@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-package letterbox;
+//package week3;
 
 public class DataStorageManager {
 
@@ -14,7 +14,7 @@ public class DataStorageManager {
     
     
 
-    public static String[] dispatch(String[] message){
+    public static String[] dispatch(String[] message)throws Exception{
         if(message[0].equals("init")) 
             init(message[1]);
         else if(message[0].equals("words"))
@@ -24,17 +24,23 @@ public class DataStorageManager {
         return datas;
     }
 
-    private static void init(String path){
+    private static void init(String path) throws Exception{
         File file = new File(path);
+        
         BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
+            //System.out.println(line);
             sb.append(line);
             sb.append(" ");
         }
         reader.close();
+        
         datas = sb.toString().toLowerCase().split("[^a-zA-Z0-9]+");
+        //System.out.println(datas.length);
+
+        
     }
 
 

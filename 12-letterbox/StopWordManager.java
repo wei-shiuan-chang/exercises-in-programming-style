@@ -5,16 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jdk.tools.jlink.resources.plugins;
 
-package letterbox;
 
 public class StopWordManager {
 
-    private static List<String> datasNo;
+    private static List<String> stopWords;
 
     StopWordManager(){
-        datasNo = new ArrayList<String>();
+        
 
     }
 
@@ -43,13 +41,17 @@ public class StopWordManager {
           System.out.println("Error reading stop_words");
         }
         String[] words = str.split(",");
-        datasNo.addAll(Arrays.asList(words));
+        stopWords = new ArrayList<String>();
+        stopWords.addAll(Arrays.asList(words));
         
-        
+        //System.out.println(datasNo.size());
     }
 
     private static String isStopWord(String word){
-        if(datasNo.contains(word)) return "true";
+        if(stopWords.contains(word)){
+            //System.out.println(word+" is stopword");
+            return "true";
+        } 
         else return "false";
     }
 
